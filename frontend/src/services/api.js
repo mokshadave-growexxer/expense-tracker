@@ -29,7 +29,7 @@ export const authAPI = {
   register:            (data)  => api.post('/auth/register', data),
   login:               (data)  => api.post('/auth/login', data),
   getProfile:          ()      => api.get('/auth/profile'),
-  resendVerification:  (email) => api.post('/auth/resend-verification', { email }),
+  googleAuth: (userData) => api.post('/auth/google', userData),
 };
 
 export const expenseAPI = {

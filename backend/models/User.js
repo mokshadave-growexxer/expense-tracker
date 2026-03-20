@@ -35,6 +35,15 @@ const userSchema = new mongoose.Schema(
       type: Date,
       default: null,
     },
+    googleId: {
+      type: String,
+      default: null,
+      index: true,
+    },
+    avatar: {
+      type: String,
+      default: null,
+    },
   },
   { timestamps: true }
 );

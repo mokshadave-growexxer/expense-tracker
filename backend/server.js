@@ -12,7 +12,7 @@ connectDB();
 
 const app = express();
 
-// Middleware - order matters!
+// Middleware
 app.use(cors({
   origin: process.env.CLIENT_URL || 'http://localhost:5173',
   credentials: true,
@@ -21,8 +21,15 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// API Routes - these MUST come before the static files catch-all
-app.use('/api/auth', require('./routes/authRoutes'));
+// ✅ SINGLE AUTH ROUTE - Import both auth routes into one
+const authRoutes = require('./routes/authRoutes');
+const googleAuthRoutes = require('./routes/googleAuthRoutes');
+
+// Combine them under /api/auth
+app.use('/api/auth', authRoutes);
+app.use('/api/auth', googleAuthRoutes);
+
+// Other routes
 app.use('/api/expenses', require('./routes/expenseRoutes'));
 app.use('/api/income', require('./routes/incomeRoutes'));
 app.use('/api/budget', require('./routes/budgetRoutes'));
@@ -36,14 +43,12 @@ app.get('/api/health', (req, res) =>
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../frontend/dist')));
   
-  // This catch-all route serves the frontend for any non-API routes
   app.get('*', (req, res) => {
     if (!req.path.startsWith('/api')) {
       res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
     }
   });
 } else {
-  // In development, return 404 for unknown routes
   app.use('*', (req, res) => res.status(404).json({ message: 'Route not found' }));
 }
 
