@@ -7,7 +7,6 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Expenses from './pages/Expenses';
 import Income from './pages/Income';
-import VerifyEmail from './pages/VerifyEmail';
 import Layout from './components/Layout';
 import AIChatBot from './components/AIChatBot';
 
@@ -61,8 +60,6 @@ export default function App() {
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/login"    element={<PublicRoute><Login /></PublicRoute>} />
             <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
-            <Route path="/verify-email/:token" element={<VerifyEmail />} />
-            <Route path="/verify-email/success" element={<VerifyEmail />} />
             <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="expenses"  element={<Expenses />} />
