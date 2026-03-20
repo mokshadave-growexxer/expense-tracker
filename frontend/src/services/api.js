@@ -26,29 +26,29 @@ api.interceptors.response.use(
 );
 
 export const authAPI = {
-  register:            (data)  => api.post('/auth/register', data),
-  login:               (data)  => api.post('/auth/login', data),
-  getProfile:          ()      => api.get('/auth/profile'),
-  resendVerification:  (email) => api.post('/auth/resend-verification', { email }),
+  register: (data) => api.post('/auth/register', data),
+  login: (data) => api.post('/auth/login', data),
+  getProfile: () => api.get('/auth/profile'),
+  resendVerification: (email) => api.post('/auth/resend-verification', { email }),
 };
 
 export const expenseAPI = {
-  getAll:  (params) => api.get('/expenses', { params }),
-  create:  (data)   => api.post('/expenses', data),
-  update:  (id, data) => api.put(`/expenses/${id}`, data),
-  remove:  (id)     => api.delete(`/expenses/${id}`),
+  getAll: (params) => api.get('/expenses', { params }),
+  create: (data) => api.post('/expenses', data),
+  update: (id, data) => api.put(`/expenses/${id}`, data),
+  remove: (id) => api.delete(`/expenses/${id}`),
 };
 
 export const incomeAPI = {
-  getAll:  (params) => api.get('/income', { params }),
-  create:  (data)   => api.post('/income', data),
-  update:  (id, data) => api.put(`/income/${id}`, data),
-  remove:  (id)     => api.delete(`/income/${id}`),
+  getAll: (params) => api.get('/income', { params }),
+  create: (data) => api.post('/income', data),
+  update: (id, data) => api.put(`/income/${id}`, data),
+  remove: (id) => api.delete(`/income/${id}`),
 };
 
 export const budgetAPI = {
-  set:        (data)  => api.post('/budget', data),
-  getCurrent: ()      => api.get('/budget/current'),
+  set: (data) => api.post('/budget', data),
+  getCurrent: () => api.get('/budget/current'),
 };
 
 export const aiAPI = {
